@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sulayman Seid Ymam | Personal Website</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ===================== CSS VARIABLES & RESET ===================== */
+    :root {
+      --bg:        #f4f6fb;
+      --bg-card:   #ffffff;
+      --nav-bg:    #1a1a2e;
+      --text:      #2d2d2d;
+      --text-muted:#555;
+      --accent:    #7f5af0;
+      --accent-lt: #ede9fe;
+      --accent-dk: #5b21b6;
+      --border:    #e2e8f0;
+      --shadow:    rgba(127,90,240,0.12);
+      --heading:   #1a1a2e;
+    }
+
+    [data-theme="dark"] {
+      --bg:        #0f0f1a;
+      --bg-card:   #1a1a2e;
+      --nav-bg:    #0a0a14;
+      --text:      #e0e0f0;
+      --text-muted:#9090b0;
+      --accent:    #9d7df5;
+      --accent-lt: #2d1b69;
+      --accent-dk: #c4b0ff;
+      --border:    #2a2a45;
+      --shadow:    rgba(157,125,245,0.15);
+      --heading:   #e0e0f0;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    /* ===================== NAVIGATION ===================== */
+    nav {
+      background-color: var(--nav-bg);
+      padding: 16px 40px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    nav ul { list-style: none; display: flex; gap: 32px; }
+    nav ul li a {
+      color: #e0e0e0;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+    nav ul li a:hover { color: var(--accent); }
+
+    /* Theme toggle button */
+    #theme-toggle {
+      background: none;
+      border: 1px solid #444;
+      border-radius: 20px;
+      padding: 6px 14px;
+      color: #e0e0e0;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-family: 'Space Mono', monospace;
+      transition: all 0.2s;
+    }
+    #theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ===================== LAYOUT ===================== */
+    .container { max-width: 860px; margin: 0 auto; padding: 0 24px; }
+
+    /* ===================== HEADER ===================== */
+    header {
+      background-color: var(--nav-bg);
+      color: #ffffff;
+      padding: 64px 24px 48px;
+      text-align: center;
+    }
+
+    .profile-img {
+      width: 130px; height: 130px;
+      border-radius: 50%; object-fit: cover;
+      border: 4px solid var(--accent);
+      margin-bottom: 20px;
+      display: block;
+      margin-left: auto; margin-right: auto;
+    }
+
+    header h1 {
+      font-size: 2.4rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      font-family: 'Space Mono', monospace;
+    }
+
+    /* Typing effect container */
+    #typed-subtitle {
+      font-size: 1.1rem;
+      color: #b0b0c8;
+      max-width: 500px;
+      margin: 0 auto;
+      min-height: 1.7em;
+      font-family: 'Space Mono', monospace;
+    }
+    #typed-subtitle .cursor {
+      display: inline-block;
+      width: 2px;
+      height: 1em;
+      background: var(--accent);
+      margin-left: 2px;
+      vertical-align: middle;
+      animation: blink 0.75s step-end infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+    /* ===================== SHARED SECTION STYLES ===================== */
+    section { padding: 56px 0; border-bottom: 1px solid var(--border); }
+    section:last-of-type { border-bottom: none; }
+
+    section h2 {
+      font-size: 1.6rem; font-weight: 700;
+      color: var(--heading); margin-bottom: 24px;
+      font-family: 'Space Mono', monospace;
+    }
+    section h2::after {
+      content: ''; display: block;
+      width: 48px; height: 3px;
+      background-color: var(--accent);
+      margin-top: 6px; border-radius: 2px;
+    }
+
+    /* ===================== ABOUT ME ===================== */
+    #about p { font-size: 1.05rem; color: var(--text-muted); max-width: 680px; }
+
+    /* ===================== EDUCATION & SKILLS ===================== */
+    .two-col { display: flex; gap: 48px; flex-wrap: wrap; }
+    .two-col > div { flex: 1; min-width: 220px; }
+    .two-col h3 {
+      font-size: 1.05rem; font-weight: 600;
+      margin-bottom: 12px; color: var(--heading);
+      font-family: 'Space Mono', monospace;
+    }
+
+    .styled-list { list-style: none; padding: 0; }
+    .styled-list li {
+      padding: 8px 0; border-bottom: 1px solid var(--border);
+      font-size: 0.97rem; color: var(--text-muted);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .styled-list li::before { content: '▸'; color: var(--accent); font-size: 0.85rem; flex-shrink: 0; }
+
+    /* ===================== SKILL BARS (DOM-manipulated) ===================== */
+    .skill-bars { margin-top: 8px; }
+    .skill-bar-item { margin-bottom: 14px; }
+    .skill-bar-label {
+      display: flex; justify-content: space-between;
+      font-size: 0.88rem; margin-bottom: 5px;
+      color: var(--text-muted);
+    }
+    .skill-bar-label span:last-child { color: var(--accent); font-weight: 700; }
+    .skill-bar-track {
+      height: 6px; background: var(--border);
+      border-radius: 4px; overflow: hidden;
+    }
+    .skill-bar-fill {
+      height: 100%; background: var(--accent);
+      border-radius: 4px; width: 0;
+      transition: width 1s ease;
+    }
+
+    /* ===================== PROJECTS ===================== */
+    /* Filter buttons */
+    .filter-bar {
+      display: flex; gap: 10px; flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+    .filter-btn {
+      padding: 6px 16px; border-radius: 20px;
+      border: 1px solid var(--border);
+      background: var(--bg-card); color: var(--text-muted);
+      font-size: 0.84rem; font-weight: 600; cursor: pointer;
+      transition: all 0.2s;
+      font-family: 'Inter', sans-serif;
+    }
+    .filter-btn.active,
+    .filter-btn:hover {
+      background: var(--accent-lt); color: var(--accent-dk);
+      border-color: var(--accent);
+    }
+
+    .projects-grid { display: flex; gap: 24px; flex-wrap: wrap; }
+
+    .project-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px; padding: 24px;
+      flex: 1; min-width: 240px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      transition: transform 0.2s, box-shadow 0.2s, opacity 0.3s;
+    }
+    .project-card:hover { transform: translateY(-4px); box-shadow: 0 8px 20px var(--shadow); }
+    .project-card.hidden { display: none; }
+
+    .card-header { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 12px; }
+    .card-icon { font-size: 2rem; }
+    .card-sub { font-size: 0.78rem; color: var(--text-muted); margin-top: 2px; }
+    .project-card h3 { font-size: 1.05rem; font-weight: 700; color: var(--heading); }
+    .project-card > p  { font-size: 0.93rem; color: var(--text-muted); margin-bottom: 14px; }
+
+    /* Toggle details */
+    .toggle-details-btn {
+      background: none; border: none;
+      color: var(--accent); font-size: 0.85rem;
+      font-weight: 600; cursor: pointer;
+      padding: 0; margin-bottom: 10px;
+      display: flex; align-items: center; gap: 5px;
+      font-family: 'Inter', sans-serif;
+      transition: opacity 0.2s;
+    }
+    .toggle-details-btn:hover { opacity: 0.75; }
+    .toggle-details-btn .arrow { display: inline-block; transition: transform 0.25s; }
+    .toggle-details-btn.open .arrow { transform: rotate(90deg); }
+
+    .feature-list {
+      list-style: none; padding: 0;
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.4s ease, margin 0.3s;
+      margin-bottom: 0;
+    }
+    .feature-list.expanded { max-height: 200px; margin-bottom: 14px; }
+    .feature-list li {
+      font-size: 0.88rem; color: var(--text-muted);
+      padding: 4px 0; padding-left: 16px;
+      position: relative;
+    }
+    .feature-list li::before {
+      content: '→'; color: var(--accent);
+      position: absolute; left: 0;
+    }
+
+    .tag {
+      display: inline-block;
+      background-color: var(--accent-lt); color: var(--accent-dk);
+      font-size: 0.78rem; font-weight: 600;
+      padding: 3px 10px; border-radius: 20px;
+      margin: 2px 2px 0 0;
+    }
+
+    /* ===================== PROTOTYPE DEMO SECTION ===================== */
+    #js-demo {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px;
+    }
+    #js-demo h3 {
+      font-size: 1rem; font-weight: 700;
+      color: var(--heading); margin-bottom: 6px;
+      font-family: 'Space Mono', monospace;
+    }
+    #js-demo p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 16px; }
+
+    .demo-controls { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
+    .demo-btn {
+      padding: 9px 20px; border-radius: 8px;
+      border: 1px solid var(--accent);
+      background: var(--accent-lt); color: var(--accent-dk);
+      font-size: 0.88rem; font-weight: 600; cursor: pointer;
+      font-family: 'Space Mono', monospace;
+      transition: all 0.2s;
+    }
+    .demo-btn:hover { background: var(--accent); color: #fff; }
+
+    #demo-output {
+      background: #0d0d1a;
+      border-radius: 8px; padding: 18px;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.82rem; color: #a0f0a0;
+      min-height: 80px;
+      white-space: pre-wrap;
+      line-height: 1.6;
+      border: 1px solid #2a2a40;
+    }
+    #demo-output .dim  { color: #5566aa; }
+    #demo-output .acc  { color: #c4b0ff; }
+    #demo-output .err  { color: #ff7070; }
+
+    /* ===================== SCROLL REVEAL ===================== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ===================== FOOTER ===================== */
+    footer {
+      background-color: var(--nav-bg);
+      color: #8888aa; text-align: center;
+      padding: 28px 24px; font-size: 0.9rem;
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ===================== LAB 3 — DATABASE SECTION ===================== */
+
+    /* --- Shared panel --- */
+    .db-panel {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px;
+      margin-bottom: 28px;
+    }
+    .db-panel h3 {
+      font-size: 1rem; font-weight: 700;
+      color: var(--heading); margin-bottom: 6px;
+      font-family: 'Space Mono', monospace;
+    }
+    .db-panel p.panel-desc {
+      font-size: 0.9rem; color: var(--text-muted); margin-bottom: 18px;
+    }
+
+    /* --- Add-user form --- */
+    .form-row {
+      display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 14px;
+    }
+    .form-row input, .form-row select {
+      flex: 1; min-width: 160px;
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.92rem;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .form-row input:focus, .form-row select:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--shadow);
+    }
+    .btn-submit {
+      padding: 10px 28px;
+      border-radius: 8px;
+      border: none;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.92rem; font-weight: 700;
+      cursor: pointer;
+      font-family: 'Space Mono', monospace;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+    .btn-submit:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn-submit:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+    .form-msg {
+      margin-top: 12px;
+      font-size: 0.88rem;
+      font-family: 'Space Mono', monospace;
+      padding: 10px 14px;
+      border-radius: 8px;
+      display: none;
+    }
+    .form-msg.success { background: #d1fae5; color: #065f46; display: block; }
+    .form-msg.error   { background: #fee2e2; color: #991b1b; display: block; }
+    [data-theme="dark"] .form-msg.success { background: #064e3b; color: #6ee7b7; }
+    [data-theme="dark"] .form-msg.error   { background: #450a0a; color: #fca5a5; }
+
+    /* --- Filter bar --- */
+    .filter-row {
+      display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 18px;
+    }
+    .filter-row input, .filter-row select {
+      flex: 1; min-width: 140px;
+      padding: 9px 14px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--bg); color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem; outline: none;
+      transition: border-color 0.2s;
+    }
+    .filter-row input:focus, .filter-row select:focus {
+      border-color: var(--accent);
+    }
+
+    /* --- Users table --- */
+    .users-table-wrap {
+      overflow-x: auto;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+    table.users-table {
+      width: 100%; border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+    .users-table thead tr {
+      background: var(--accent);
+      color: #fff;
+    }
+    .users-table thead th {
+      padding: 11px 16px;
+      text-align: left; font-weight: 700;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.82rem; letter-spacing: 0.03em;
+    }
+    .users-table tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background 0.15s;
+    }
+    .users-table tbody tr:last-child { border-bottom: none; }
+    .users-table tbody tr:hover { background: var(--accent-lt); }
+    .users-table td { padding: 11px 16px; color: var(--text-muted); }
+    .users-table td:first-child { color: var(--heading); font-weight: 600; }
+    .role-badge {
+      display: inline-block;
+      padding: 2px 10px; border-radius: 20px;
+      font-size: 0.78rem; font-weight: 600;
+      background: var(--accent-lt); color: var(--accent-dk);
+    }
+
+    .table-empty {
+      text-align: center; padding: 24px;
+      color: var(--text-muted); font-style: italic;
+      font-size: 0.9rem;
+    }
+    .table-status {
+      font-size: 0.82rem; color: var(--text-muted);
+      font-family: 'Space Mono', monospace;
+      margin-top: 10px;
+    }
+
+    /* ===================== RESPONSIVE ===================== */
+    @media (max-width: 600px) {
+      nav { padding: 14px 20px; }
+      nav ul { gap: 16px; }
+      header h1 { font-size: 1.7rem; }
+      .two-col { flex-direction: column; gap: 24px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ===================== NAVIGATION ===================== -->
+  <nav>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#database">Database</a></li>
+    </ul>
+    <!-- DOM feature: theme toggle button -->
+    <button id="theme-toggle">☀ Light</button>
+  </nav>
+
+  <!-- ===================== HEADER ===================== -->
+  <header>
+    <img
+      class="profile-img"
+      src="./pic.jpg"
+      alt="Profile photo of Sulayman Seid Ymam"
+    />
+    <h1>Sulayman Seid Ymam</h1>
+    <!-- JavaScript typing animation target -->
+    <p id="typed-subtitle"><span id="typed-text"></span><span class="cursor"></span></p>
+  </header>
+
+  <!-- ===================== MAIN CONTENT ===================== -->
+  <main class="container">
+
+    <!-- === ABOUT ME === -->
+    <section id="about" class="reveal">
+      <h2>About Me</h2>
+      <p>
+        I'm a 3rd-year Information Technology student at
+        <strong>Lobachevsky University</strong>, but my real passion lies in
+        <strong>DevOps</strong>. I love working close to the metal — setting up
+        Linux servers, writing automation scripts, containerising services, and making systems
+        talk to each other reliably. I believe great infrastructure should be invisible: fast,
+        stable, and self-healing. When I'm not tinkering with servers, I'm exploring new tools
+        in the open-source ecosystem.
+      </p>
+    </section>
+
+    <!-- === EDUCATION & SKILLS === -->
+    <section id="education" class="reveal">
+      <h2>Education &amp; Skills</h2>
+      <div class="two-col">
+
+        <div>
+          <h3>Education</h3>
+          <ul class="styled-list">
+            <li>B.Sc. Information Technology — Lobachevsky University (2023–2027)</li>
+            <li>IT Specialist — Google (2021)</li>
+            <li>Network Security — Microsoft (2024)</li>
+          </ul>
+        </div>
+
+        <!-- Skill bars rendered by JavaScript prototype objects -->
+        <div>
+          <h3>Key Skills</h3>
+          <div id="skill-bars" class="skill-bars">
+            <!-- JS will inject skill bars here -->
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- === PROJECTS === -->
+    <section id="projects" class="reveal">
+      <h2>My Projects</h2>
+
+      <!-- DOM feature: filter buttons -->
+      <div class="filter-bar" id="filter-bar">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="Python">Python</button>
+        <button class="filter-btn" data-filter="Docker">Docker</button>
+        <button class="filter-btn" data-filter="Ansible">Ansible</button>
+      </div>
+
+      <div class="projects-grid" id="projects-grid">
+        <!-- JS prototype ProjectCard will render cards here -->
+      </div>
+    </section>
+
+    <!-- === JAVASCRIPT PROTOTYPE DEMO === -->
+    <section id="proto-demo" class="reveal">
+      <h2>JS Prototype Demo</h2>
+      <div id="js-demo">
+        <h3>// Prototype-based inheritance in action</h3>
+        <p>
+          The projects and skills above are rendered via prototype objects.
+          Use the console below to inspect the prototype chain live.
+        </p>
+        <div class="demo-controls">
+          <button class="demo-btn" onclick="demoListProjects()">List Projects</button>
+          <button class="demo-btn" onclick="demoListSkills()">List Skills</button>
+          <button class="demo-btn" onclick="demoProtoChain()">Prototype Chain</button>
+          <button class="demo-btn" onclick="demoClearOutput()">Clear</button>
+        </div>
+        <div id="demo-output">// Click a button above to inspect the prototype objects…</div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         LAB 3 — TASK 1: Add user form
+         POST /api/users
+         ============================================================ -->
+    <section id="database" class="reveal">
+      <h2>Database</h2>
+
+      <!-- TASK 1 ── Add user -->
+      <div class="db-panel">
+        <h3>// Task 1 — Add a new user</h3>
+        <p class="panel-desc">Fill in the form below. The data is sent via <code>fetch()</code> POST to the server, which runs an SQL INSERT.</p>
+
+        <div class="form-row">
+          <input type="text"  id="f-name"  placeholder="Full name"      autocomplete="off" />
+          <input type="email" id="f-email" placeholder="Email address"  autocomplete="off" />
+          <select id="f-role">
+            <option value="" disabled selected>Select role…</option>
+            <option value="Student">Student</option>
+            <option value="Developer">Developer</option>
+            <option value="Designer">Designer</option>
+            <option value="DevOps Engineer">DevOps Engineer</option>
+            <option value="Lecturer">Lecturer</option>
+          </select>
+        </div>
+        <button class="btn-submit" id="add-user-btn" onclick="addUser()">Add User</button>
+        <div class="form-msg" id="form-msg"></div>
+      </div>
+
+      <!-- TASK 2 + 3 ── Display & filter users -->
+      <div class="db-panel">
+        <h3>// Task 2 &amp; 3 — Users table with live filtering</h3>
+        <p class="panel-desc">Data is fetched from the server via <code>GET /api/users</code>. The filter controls send a new request with query parameters on every change — the server applies <code>WHERE</code> clauses and returns filtered rows.</p>
+
+        <div class="filter-row">
+          <input type="text" id="filter-name" placeholder="🔍  Search by name…" oninput="fetchUsers()" />
+          <select id="filter-role" onchange="fetchUsers()">
+            <option value="all">All roles</option>
+            <option value="Student">Student</option>
+            <option value="Developer">Developer</option>
+            <option value="Designer">Designer</option>
+            <option value="DevOps Engineer">DevOps Engineer</option>
+            <option value="Lecturer">Lecturer</option>
+          </select>
+        </div>
+
+        <div class="users-table-wrap">
+          <table class="users-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Added</th>
+              </tr>
+            </thead>
+            <tbody id="users-tbody">
+              <tr><td colspan="5" class="table-empty">Loading…</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="table-status" id="table-status"></p>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- ===================== FOOTER / CONTACT ===================== -->
+  <footer id="contact">
+    <p>
+      &copy; 2026 Sulayman Seid Ymam &nbsp;|&nbsp;
+      <a href="/cdn-cgi/l/email-protection#5f2c2a333e36323e316c6c6a6d1f3a323e3633713c3032"><span class="__cf_email__" data-cfemail="295a5c4548404448471a1a1c1b694c44484045074a4644">[email&#160;protected]</span></a>
+      &nbsp;|&nbsp;
+      <a href="https://github.com/Sulaiman3352" target="_blank" rel="noopener">GitHub</a>
+    </p>
+  </footer>
+
+  <!-- ===================== JAVASCRIPT ===================== -->
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+
+    /* ============================================================
+       1. PROTOTYPE-BASED INHERITANCE
+       ============================================================ */
+
+    /**
+     * Base constructor — PortfolioItem
+     * All items on this portfolio share a name and tags.
+     */
+    function PortfolioItem(name, tags) {
+      this.name = name;
+      this.tags = tags || [];
+    }
+
+    /** Shared method on the prototype — returns a tag summary */
+    PortfolioItem.prototype.tagSummary = function () {
+      return this.tags.join(' · ');
+    };
+
+    /** Shared method — checks if item has a given tag */
+    PortfolioItem.prototype.hasTag = function (tag) {
+      return this.tags.includes(tag);
+    };
+
+    /* ---- ProjectCard extends PortfolioItem ---- */
+
+    /**
+     * ProjectCard constructor — inherits from PortfolioItem
+     * Adds icon, description, and feature list.
+     */
+    function ProjectCard(name, icon, subtitle, description, features, tags) {
+      PortfolioItem.call(this, name, tags); // call parent constructor
+      this.icon        = icon;
+      this.subtitle    = subtitle;
+      this.description = description;
+      this.features    = features || [];
+    }
+
+    // Set up prototype chain
+    ProjectCard.prototype = Object.create(PortfolioItem.prototype);
+    ProjectCard.prototype.constructor = ProjectCard;
+
+    /** ProjectCard-specific method — renders a card DOM element */
+    ProjectCard.prototype.render = function () {
+      const card = document.createElement('div');
+      card.className = 'project-card';
+      card.dataset.tags = JSON.stringify(this.tags);
+
+      // Build tags HTML
+      const tagsHtml = this.tags.map(t => `<span class="tag">${t}</span>`).join('');
+
+      // Build feature list HTML
+      const featuresHtml = this.features
+        .map(f => `<li>${f}</li>`)
+        .join('');
+
+      card.innerHTML = `
+        <div class="card-header">
+          <div class="card-icon">${this.icon}</div>
+          <div>
+            <h3>${this.name}</h3>
+            <span class="card-sub">${this.subtitle}</span>
+          </div>
+        </div>
+        <p>${this.description}</p>
+        <button class="toggle-details-btn">
+          <span class="arrow">▶</span> Show details
+        </button>
+        <ul class="feature-list">${featuresHtml}</ul>
+        <div>${tagsHtml}</div>
+      `;
+
+      // DOM manipulation — toggle feature list on button click
+      const btn      = card.querySelector('.toggle-details-btn');
+      const list     = card.querySelector('.feature-list');
+      btn.addEventListener('click', function () {
+        const isOpen = list.classList.toggle('expanded');
+        btn.classList.toggle('open', isOpen);
+        btn.querySelector('.arrow').nextSibling.textContent =
+          isOpen ? ' Hide details' : ' Show details';
+      });
+
+      return card;
+    };
+
+    /* ---- SkillBar extends PortfolioItem ---- */
+
+    /**
+     * SkillBar constructor — inherits from PortfolioItem
+     * Adds a proficiency level (0–100) and an emoji icon.
+     */
+    function SkillBar(name, icon, level, tags) {
+      PortfolioItem.call(this, name, tags);
+      this.icon  = icon;
+      this.level = level; // 0-100
+    }
+
+    SkillBar.prototype = Object.create(PortfolioItem.prototype);
+    SkillBar.prototype.constructor = SkillBar;
+
+    /** Returns a text label for the proficiency level */
+    SkillBar.prototype.levelLabel = function () {
+      if (this.level >= 80) return 'Advanced';
+      if (this.level >= 55) return 'Proficient';
+      return 'Familiar';
+    };
+
+    /** Renders a skill bar DOM element */
+    SkillBar.prototype.render = function () {
+      const item = document.createElement('div');
+      item.className = 'skill-bar-item';
+      item.innerHTML = `
+        <div class="skill-bar-label">
+          <span>${this.icon} ${this.name}</span>
+          <span>${this.levelLabel()} — ${this.level}%</span>
+        </div>
+        <div class="skill-bar-track">
+          <div class="skill-bar-fill" data-level="${this.level}"></div>
+        </div>
+      `;
+      return item;
+    };
+
+
+    /* ============================================================
+       2. DATA — Instances of the prototype objects
+       ============================================================ */
+
+    const projects = [
+      new ProjectCard(
+        'Python Web Scraper', '🕷️', 'Automation · Data Collection',
+        'A Python-based scraping tool that extracts structured data from target websites, handles pagination, rate-limiting, and exports results to JSON or CSV for analysis.',
+        [
+          'Built with <code>requests</code> and <code>BeautifulSoup</code>',
+          'Automatic retry logic and request throttling',
+          'Configurable via CLI arguments for different targets',
+          'Exports to JSON / CSV with timestamped output files'
+        ],
+        ['Python', 'BeautifulSoup', 'Bash', 'Linux']
+      ),
+      new ProjectCard(
+        'Claude Storage Server', '🗄️', 'Infrastructure · Self-hosted',
+        'Designed and deployed a self-hosted storage backend server to support Claude-related workflows, provisioned on Linux with containerised services managed via Docker.',
+        [
+          'Provisioned on a Linux VM with custom networking rules',
+          'Services containerised with Docker Compose',
+          'Automated setup and re-deployment using Ansible playbooks',
+          'Persistent volume management and backup scripting in Bash'
+        ],
+        ['Docker', 'Ansible', 'Linux', 'Bash', 'Virtualization']
+      ),
+      new ProjectCard(
+        'Multimedia Streaming Server', '📡', 'Infrastructure · Networking',
+        'Built and configured a self-hosted multimedia streaming server on Linux, enabling on-demand video and audio access across the local network and remotely via a secure tunnel.',
+        [
+          'Deployed Jellyfin inside a Docker container',
+          'Configured reverse proxy and SSL with Nginx',
+          'Automated library scanning and metadata fetching',
+          'Remote access secured via WireGuard VPN tunnel'
+        ],
+        ['Docker', 'Nginx', 'Linux', 'WireGuard', 'Ansible']
+      )
+    ];
+
+    const skills = [
+      new SkillBar('Linux',          '🐧', 90, ['OS', 'Admin']),
+      new SkillBar('Docker',         '📦', 80, ['DevOps', 'Containers']),
+      new SkillBar('Bash Scripting', '🐚', 75, ['Scripting', 'Automation']),
+      new SkillBar('Ansible',        '⚙️', 70, ['DevOps', 'IaC']),
+      new SkillBar('Python',         '🐍', 65, ['Scripting']),
+      new SkillBar('Virtualization', '🖥️', 72, ['Infra']),
+    ];
+
+
+    /* ============================================================
+       3. DOM MANIPULATION — Render projects & skills
+       ============================================================ */
+
+    function renderProjects(filter) {
+      const grid = document.getElementById('projects-grid');
+      grid.innerHTML = '';
+      projects.forEach(function (p) {
+        const card = p.render();
+        if (filter && filter !== 'all' && !p.hasTag(filter)) {
+          card.classList.add('hidden');
+        }
+        grid.appendChild(card);
+      });
+    }
+
+    function renderSkills() {
+      const container = document.getElementById('skill-bars');
+      skills.forEach(function (s) {
+        container.appendChild(s.render());
+      });
+    }
+
+    // Animate skill bars when they scroll into view
+    function animateSkillBars() {
+      document.querySelectorAll('.skill-bar-fill').forEach(function (fill) {
+        const level = fill.dataset.level;
+        // Small timeout so the CSS transition fires after paint
+        setTimeout(function () { fill.style.width = level + '%'; }, 100);
+      });
+    }
+
+
+    /* ============================================================
+       4. DOM MANIPULATION — Filter buttons
+       ============================================================ */
+
+    document.addEventListener('DOMContentLoaded', function () {
+
+      // Render initial content
+      renderProjects('all');
+      renderSkills();
+
+      // Lab 3: initial users fetch
+      fetchUsers();
+
+      // Filter buttons
+      document.getElementById('filter-bar').addEventListener('click', function (e) {
+        if (!e.target.matches('.filter-btn')) return;
+        // Update active state
+        document.querySelectorAll('.filter-btn').forEach(function (b) {
+          b.classList.remove('active');
+        });
+        e.target.classList.add('active');
+        // Re-render with filter
+        renderProjects(e.target.dataset.filter);
+      });
+
+    });
+
+
+    /* ============================================================
+       5. DOM MANIPULATION — Typing animation
+       ============================================================ */
+
+    (function typewriter() {
+      const phrases = [
+        'Information Technology Student',
+        'DevOps Engineer',
+        'Linux Enthusiast',
+        'Open-Source Builder'
+      ];
+      let pi = 0, ci = 0, deleting = false;
+      const el = document.getElementById('typed-text');
+
+      function tick() {
+        const phrase = phrases[pi];
+        if (!deleting) {
+          el.textContent = phrase.slice(0, ++ci);
+          if (ci === phrase.length) {
+            deleting = true;
+            setTimeout(tick, 1600);
+            return;
+          }
+        } else {
+          el.textContent = phrase.slice(0, --ci);
+          if (ci === 0) {
+            deleting = false;
+            pi = (pi + 1) % phrases.length;
+          }
+        }
+        setTimeout(tick, deleting ? 45 : 80);
+      }
+      tick();
+    })();
+
+
+    /* ============================================================
+       6. DOM MANIPULATION — Dark/Light theme toggle
+       ============================================================ */
+
+    (function initTheme() {
+      const btn  = document.getElementById('theme-toggle');
+      const html = document.documentElement;
+      let dark   = false;
+
+      // Respect OS preference
+      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        dark = true;
+        html.setAttribute('data-theme', 'dark');
+        btn.textContent = '☀ Light';
+      }
+
+      btn.addEventListener('click', function () {
+        dark = !dark;
+        if (dark) {
+          html.setAttribute('data-theme', 'dark');
+          btn.textContent = '☀ Light';
+        } else {
+          html.removeAttribute('data-theme');
+          btn.textContent = '🌙 Dark';
+        }
+      });
+    })();
+
+
+    /* ============================================================
+       7. DOM MANIPULATION — Scroll reveal + skill bar animation
+       ============================================================ */
+
+    (function initScrollReveal() {
+      let skillsAnimated = false;
+
+      const observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            // Animate skill bars when education section appears
+            if (entry.target.id === 'education' && !skillsAnimated) {
+              skillsAnimated = true;
+              animateSkillBars();
+            }
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.reveal').forEach(function (el) {
+        observer.observe(el);
+      });
+    })();
+
+
+    /* ============================================================
+       8. PROTOTYPE DEMO — Console output functions
+       ============================================================ */
+
+    function demoLog(html) {
+      var out = document.getElementById('demo-output');
+      out.innerHTML += html + '\n';
+      out.scrollTop = out.scrollHeight;
+    }
+
+    function demoClearOutput() {
+      document.getElementById('demo-output').innerHTML =
+        '<span class="dim">// Output cleared.</span>\n';
+    }
+
+    function demoListProjects() {
+      demoLog('<span class="dim">// projects[] — instances of ProjectCard</span>');
+      projects.forEach(function (p, i) {
+        demoLog(
+          '<span class="acc">[' + i + ']</span> ' +
+          p.name +
+          ' <span class="dim">|</span> tags: ' + p.tagSummary()
+        );
+      });
+      demoLog('');
+    }
+
+    function demoListSkills() {
+      demoLog('<span class="dim">// skills[] — instances of SkillBar</span>');
+      skills.forEach(function (s) {
+        demoLog(
+          '<span class="acc">' + s.name + '</span>' +
+          '  level: ' + s.level + '%' +
+          '  label: ' + s.levelLabel() +
+          '  <span class="dim">(' + s.tagSummary() + ')</span>'
+        );
+      });
+      demoLog('');
+    }
+
+    function demoProtoChain() {
+      demoLog('<span class="dim">// Prototype chain inspection</span>');
+      var p = projects[0];
+      var s = skills[0];
+      demoLog(
+        'projects[0] instanceof ProjectCard  → ' +
+        (p instanceof ProjectCard)
+      );
+      demoLog(
+        'projects[0] instanceof PortfolioItem → ' +
+        (p instanceof PortfolioItem)
+      );
+      demoLog(
+        'skills[0]   instanceof SkillBar      → ' +
+        (s instanceof SkillBar)
+      );
+      demoLog(
+        'skills[0]   instanceof PortfolioItem → ' +
+        (s instanceof PortfolioItem)
+      );
+      demoLog('');
+      demoLog('<span class="dim">// Own vs inherited methods</span>');
+      demoLog(
+        'ProjectCard.prototype.hasOwnProperty("render")      → ' +
+        ProjectCard.prototype.hasOwnProperty('render')
+      );
+      demoLog(
+        'ProjectCard.prototype.hasOwnProperty("tagSummary")  → ' +
+        ProjectCard.prototype.hasOwnProperty('tagSummary') +
+        ' <span class="dim">(inherited from PortfolioItem)</span>'
+      );
+      demoLog(
+        'ProjectCard.prototype.hasOwnProperty("tagSummary")  → ' +
+        ProjectCard.prototype.hasOwnProperty('tagSummary') +
+        ' <span class="dim">(inherited from PortfolioItem)</span>'
+      );
+      demoLog('');
+    }
+
+
+    /* ============================================================
+       LAB 3 — TASK 1: Add user via form (POST /api/users)
+       ============================================================ */
+
+    async function addUser() {
+      var name  = document.getElementById('f-name').value.trim();
+      var email = document.getElementById('f-email').value.trim();
+      var role  = document.getElementById('f-role').value;
+      var msg   = document.getElementById('form-msg');
+      var btn   = document.getElementById('add-user-btn');
+
+      // Clear previous message
+      msg.className = 'form-msg';
+      msg.textContent = '';
+
+      if (!name || !email || !role) {
+        msg.className = 'form-msg error';
+        msg.textContent = '✖  Please fill in all fields.';
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'Adding…';
+
+      try {
+        var res  = await fetch('/api/users', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name: name, email: email, role: role })
+        });
+        var data = await res.json();
+
+        if (data.success) {
+          msg.className = 'form-msg success';
+          msg.textContent = '✔  ' + data.message;
+          // Clear inputs
+          document.getElementById('f-name').value  = '';
+          document.getElementById('f-email').value = '';
+          document.getElementById('f-role').value  = '';
+          // Refresh the table (Task 2/3)
+          fetchUsers();
+        } else {
+          msg.className = 'form-msg error';
+          msg.textContent = '✖  ' + data.error;
+        }
+      } catch (err) {
+        msg.className = 'form-msg error';
+        msg.textContent = '✖  Could not reach the server. Is it running?';
+      }
+
+      btn.disabled = false;
+      btn.textContent = 'Add User';
+    }
+
+
+    /* ============================================================
+       LAB 3 — TASK 2 & 3: Fetch & display users with filters
+       GET /api/users?name=&role=
+       ============================================================ */
+
+    async function fetchUsers() {
+      var nameFilter = document.getElementById('filter-name').value.trim();
+      var roleFilter = document.getElementById('filter-role').value;
+
+      var params = new URLSearchParams();
+      if (nameFilter) params.set('name', nameFilter);
+      if (roleFilter && roleFilter !== 'all') params.set('role', roleFilter);
+
+      var tbody  = document.getElementById('users-tbody');
+      var status = document.getElementById('table-status');
+
+      tbody.innerHTML = '<tr><td colspan="5" class="table-empty">Loading…</td></tr>';
+      status.textContent = '';
+
+      try {
+        var res  = await fetch('/api/users?' + params.toString());
+        var data = await res.json();
+
+        if (!data.success) {
+          tbody.innerHTML = '<tr><td colspan="5" class="table-empty">Error: ' + data.error + '</td></tr>';
+          return;
+        }
+
+        var users = data.users;
+
+        if (users.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="5" class="table-empty">No users found matching the filters.</td></tr>';
+          status.textContent = '// 0 rows returned';
+          return;
+        }
+
+        // Build table rows
+        tbody.innerHTML = users.map(function (u) {
+          var date = u.created_at ? u.created_at.split(' ')[0] : '—';
+          return '<tr>' +
+            '<td>' + u.id + '</td>' +
+            '<td>' + escapeHtml(u.name) + '</td>' +
+            '<td>' + escapeHtml(u.email) + '</td>' +
+            '<td><span class="role-badge">' + escapeHtml(u.role) + '</span></td>' +
+            '<td>' + date + '</td>' +
+            '</tr>';
+        }).join('');
+
+        status.textContent = '// ' + users.length + ' row' + (users.length !== 1 ? 's' : '') + ' returned';
+
+      } catch (err) {
+        tbody.innerHTML = '<tr><td colspan="5" class="table-empty">Could not reach the server. Is it running?</td></tr>';
+      }
+    }
+
+    /** Prevent XSS when injecting user-supplied strings into innerHTML */
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+  </script>
+</body>
+</html>
