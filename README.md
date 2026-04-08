@@ -1,6 +1,5 @@
 # Laboratory Work 3 — Interacting with a Database through a Web Page
 
-**Course:** Web Development — Lobachevsky University  
 **Student:** Sulayman Seid Ymam  
 **Stack:** HTML · CSS · Vanilla JS · Node.js · Express · SQLite (sql.js)
 
